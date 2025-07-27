@@ -1,158 +1,164 @@
-Project Vaani: AI-Powered Digital Companion
-Project Vaani is a voice-first AI digital companion designed to make government social welfare schemes accessible to digitally inexperienced and multilingual citizens in India. It leverages a suite of modern AI services to provide a seamless, conversational experience, breaking down language and technology barriers.
+:
 
-Table of Contents
-Project Aim & Vision
+🗣️ Project Vaani – AI-Powered Digital Companion
+Project Vaani is a voice-first AI digital companion built to help digitally inexperienced and multilingual Indian citizens access government welfare schemes with ease. It simplifies complex bureaucratic processes into natural, spoken conversations.
 
-Core Workflow
+📌 Table of Contents
+🎯 Project Aim & Vision
 
-Tech Stack
+🔁 Complete Technical Workflow
 
-Getting Started
+🧰 Tech Stack
 
-Prerequisites
+⚙️ Getting Started
 
-Installation
+📦 Prerequisites
 
-Environment Variables
+📥 Installation
 
-Running the Application
+🔐 Environment Variables
 
-Project Structure
+🚀 Running the Application
 
-1. Project Aim & Vision
-Aim: To create "Project Vaani," a voice-first AI digital companion that makes government social welfare schemes accessible to digitally inexperienced and multilingual citizens in India.
+📁 Project Structure
 
-Vision: To build a future where any citizen, regardless of their language or technical literacy, can easily understand, apply for, and receive the benefits they are entitled to, using nothing more than their own voice. We are bridging the access gap by transforming complex digital processes into simple, empathetic conversations.
+🎯 Project Aim & Vision
+Aim: Build Project Vaani – a voice-first AI companion enabling easy access to government schemes for all citizens, especially those with limited digital skills.
 
-2. The Complete Technical Workflow
-This workflow details the end-to-end process from the moment a user speaks to when they receive a spoken response, ensuring a seamless experience in their chosen language.
+Vision: Ensure inclusive access where anyone—regardless of language or tech literacy—can understand, apply for, and benefit from government support simply through voice.
 
-Initial Setup:
+🔁 Complete Technical Workflow
+This outlines the complete process from user speech to audio reply:
 
-User Interface (React + Vite): The user opens a mobile-responsive website.
+User Interface (React + Vite)
+Mobile-responsive web app launches and prompts user to choose a language (e.g., English or Hindi).
 
-Language Selection: The user is first prompted to select their preferred language for the session (e.g., English or Hindi). This choice is stored and sent with every subsequent request.
+Voice Input (Frontend)
+User speaks. Browser uses MediaRecorder API to capture audio.
 
-The Conversational Loop:
+Speech-to-English Translation (Groq Whisper)
+Backend sends audio to Groq’s Whisper /translations API → gets English text.
 
-Voice Input (Frontend): The user speaks their query. The browser's MediaRecorder API captures the audio, which is sent to the backend along with the chosen language code.
+Core Logic Processing (External API)
+English text sent to:
+https://adityachanna04-project.onrender.com/chat → gets English response.
 
-Audio-to-English Translation (Backend - Groq Whisper): The backend calls the Groq Whisper API's /translations endpoint, which transcribes the user's speech and translates it directly into English text.
+Translation to Native Language (Groq LLM)
+If original input was Hindi → Groq LLaMA3 model translates response back to Hindi.
 
-Core Logic Processing (Backend - External API): The clean English text is sent to the external logic API (https://adityachanna04-project.onrender.com/chat). This "brain" processes the query and returns its response in English text.
+Text-to-Speech (ElevenLabs API)
+Final response is converted to audio using language-specific voices.
 
-Response Translation (Backend - Groq LLM): If the user's chosen language was Hindi, the backend uses a Groq language model (like llama3-8b-8192) to translate the English response from the external API into simple, conversational Hindi. This step is skipped for English users.
+Frontend Delivery
+JSON with response text, audio URL, and transcription is sent to frontend → user hears response.
 
-Text-to-Speech Generation (Backend - ElevenLabs): The backend uses the final response text (in the correct language) and the user's language choice to select the appropriate voice from the ElevenLabs API, which returns the spoken response as an MP3 file.
+🧰 Tech Stack
+🖥️ Frontend
+React (with Vite)
 
-Final Delivery (Frontend): The backend sends a JSON object to the frontend containing the transcription, the final spoken response text, and a URL to the audio file. The frontend displays the conversation and plays the audio.
+JavaScript
 
-3. Tech Stack
-Frontend: React (with Vite), JavaScript
+🛠️ Backend
+Node.js
 
-Backend: Node.js, Express.js
+Express.js
 
-Speech-to-Text: Groq API (Whisper-large-v3)
+🎙️ AI & Audio Services
+Speech-to-Text: Groq Whisper (whisper-large-v3)
 
-Language Translation & Logic: Groq API (Llama3)
+Logic + Translation: Groq LLaMA3
 
 Text-to-Speech: ElevenLabs API
 
-4. Getting Started
-Follow these instructions to set up and run the project on your local machine.
+⚙️ Getting Started
+📦 Prerequisites
+Node.js v18+
 
-Prerequisites
-Node.js (v18 or later recommended)
+npm (or Yarn)
 
-npm (or yarn)
-
-Installation
-Clone the Repository:
-
-git clone <your-repository-url>
-cd project-vaani
-
-Install Backend Dependencies:
-Navigate to the backend directory and install the required packages.
-
+📥 Installation
+bash
+Copy
+Edit
+# Clone the repository
+git clone https://github.com/JastejS28/Project_Vaani.git
+cd Project_Vaani
+Backend Setup
+bash
+Copy
+Edit
 cd backend
 npm install
-
-Install Frontend Dependencies:
-Navigate to the frontend directory and install the required packages.
-
+Frontend Setup
+bash
+Copy
+Edit
 cd ../frontend
 npm install
+🔐 Environment Variables
+In the backend/ directory, create a .env file with:
 
-Environment Variables
-The backend requires API keys to function.
-
-In the backend directory, create a new file named .env.
-
-Add the following variables to the .env file, replacing the placeholder values with your actual keys and URLs:
-
-# Port for the backend server
+env
+Copy
+Edit
 PORT=5000
 
 # API Keys
-GROQ_API_KEY="gsk_..."
-ELEVENLABS_API_KEY="..."
+GROQ_API_KEY="your_groq_key"
+ELEVENLABS_API_KEY="your_elevenlabs_key"
 
-# External API for core logic
+# Logic API
 EXTERNAL_API_URL="https://adityachanna04-project.onrender.com/chat"
+Also, create an empty folder for audio uploads:
 
-Create Required Folders:
-Inside the backend directory, you must manually create an empty folder named uploads. This is where temporary audio files will be stored before processing.
-
+bash
+Copy
+Edit
 cd backend
 mkdir uploads
+🚀 Running the Application
+Run backend and frontend in separate terminals:
 
-Running the Application
-You need to run both the backend and frontend servers simultaneously in separate terminal windows.
-
-Start the Backend Server:
-From the backend directory:
-
+Backend
+bash
+Copy
+Edit
+cd backend
 npm start
-
-The server should now be running on http://localhost:5000.
-
-Start the Frontend Development Server:
-From the frontend directory:
-
+# Runs at http://localhost:5000
+Frontend
+bash
+Copy
+Edit
+cd frontend
 npm run dev
+# Opens at http://localhost:5173
+You're ready to talk to Project Vaani in your browser! 🧠🎤
 
-The React application will open in your browser, typically at http://localhost:5173.
-
-You can now interact with Project Vaani in your browser.
-
-5. Project Structure
+📁 Project Structure
+bash
+Copy
+Edit
 project-vaani/
 ├── backend/
-│   ├── outputs/          # Storage for generated AI audio responses
-│   ├── uploads/          # Temporary storage for user audio
-│   ├── .env              # Environment variables and API keys
-│   ├── .gitignore
-│   ├── config.js         # (If used for configuration)
-│   ├── index.js          # Main Express server and API logic
-│   ├── package-lock.json
-│   └── package.json
-└── frontend/
-    ├── node_modules/
-    ├── public/
-    ├── src/
-    │   ├── assets/
-    │   ├── components/
-    │   │   ├── AudioRecorder.jsx
-    │   │   ├── ChatMessage.jsx
-    │   │   ├── FormModal.css
-    │   │   ├── FormModal.jsx
-    │   │   └── Icons.jsx
-    │   ├── App.css
-    │   ├── App.jsx       # Main application component
-    │   ├── index.css
-    │   └── main.jsx
-    ├── .gitignore
-    ├── eslint.config.js
-    └── index.html
+│   ├── outputs/           # AI-generated audio responses
+│   ├── uploads/           # Temp user audio
+│   ├── .env               # API keys & config
+│   ├── index.js           # Main Express server
+│   ├── package.json
+│   └── ...
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   │   ├── assets/
+│   │   ├── components/
+│   │   │   ├── AudioRecorder.jsx
+│   │   │   ├── ChatMessage.jsx
+│   │   │   ├── FormModal.jsx / .css
+│   │   │   └── Icons.jsx
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   ├── index.html
+│   └── ...
+💡 Built with care to empower every voice.
+
