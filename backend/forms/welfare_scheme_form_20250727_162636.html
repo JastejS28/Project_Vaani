@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>General Welfare Scheme Application Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .form-container {
+            width: 430px;
+            height: 788px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="email"],
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0069d9;
+            border-color: #0062cc;
+        }
+
+        .alert {
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2 class="text-center">सामान्य कल्याण योजना (General Welfare Scheme)</h2>
+    <p class="text-center"><b>मुख्य लाभ:</b> यह योजना नागरिकों को सामाजिक सुरक्षा प्रदान करती है। (Key Benefits: This scheme provides social security to citizens.)</p>
+
+    <form id="welfareForm">
+        <div class="form-group">
+            <label for="name">नाम (Name):</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="age">आयु (Age):</label>
+            <input type="number" class="form-control" id="age" name="age" required min="18" max="50">
+            <small id="ageHelp" class="form-text text-muted">कृपया 18 से 50 वर्ष के बीच आयु दर्ज करें। (Please enter age between 18 and 50 years.)</small>
+        </div>
+
+        <div class="form-group">
+            <label for="gender">लिंग (Gender):</label>
+            <select class="form-control" id="gender" name="gender" required>
+                <option value="">चुनें (Choose)</option>
+                <option value="male">पुरुष (Male)</option>
+                <option value="female">महिला (Female)</option>
+                <option value="other">अन्य (Other)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="state">राज्य (State):</label>
+            <select class="form-control" id="state" name="state" required>
+                <option value="">चुनें (Choose)</option>
+                <option value="Rajasthan">राजस्थान (Rajasthan)</option>
+                <!-- Add more states as needed -->
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="occupation">व्यवसाय (Occupation):</label>
+            <input type="text" class="form-control" id="occupation" name="occupation" required>
+        </div>
+
+        <div class="form-group">
+            <label for="incomeCategory">आय वर्ग (Income Category):</label>
+            <select class="form-control" id="incomeCategory" name="incomeCategory" required>
+                <option value="">चुनें (Choose)</option>
+                <option value="BPL">बीपीएल (BPL)</option>
+                <option value="APL">एपीएल (APL)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="familySize">परिवार का आकार (Family Size):</label>
+            <input type="number" class="form-control" id="familySize" name="familySize" required min="1">
+        </div>
+
+        <div class="form-group">
+            <label>क्या आप भारतीय नागरिक हैं? (Are you an Indian Citizen?)</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="indianCitizen" id="citizenYes" value="yes" required>
+                <label class="form-check-label" for="citizenYes">
+                    हाँ (Yes)
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="indianCitizen" id="citizenNo" value="no" required>
+                <label class="form-check-label" for="citizenNo">
+                    नहीं (No)
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>क्या आपके पास जन धन या आधार से जुड़ा बचत बैंक खाता है? (Do you have a Jan Dhan or savings bank account linked with Aadhaar?)</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="aadhaarLinkedAccount" id="accountYes" value="yes" required>
+                <label class="form-check-label" for="accountYes">
+                    हाँ (Yes)
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="aadhaarLinkedAccount" id="accountNo" value="no" required>
+                <label class="form-check-label" for="accountNo">
+                    नहीं (No)
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>क्या आप विकलांग हैं? (Do you have a disability?)</label>
+            <div class="form-check">
+                <input type="radio" class="form-check-input" id="hasDisabilityYes" name="hasDisability" value="yes">
+                <label class="form-check-label" for="hasDisabilityYes">हाँ (Yes)</label>
+            </div>
+            <div class="form-check">
+                <input type="radio" class="form-check-input" id="hasDisabilityNo" name="hasDisability" value="no" checked>
+                <label class="form-check-label" for="hasDisabilityNo">नहीं (No)</label>
+            </div>
+        </div>
+
+        <div id="disabilityDetails" style="display: none;">
+            <div class="form-group">
+                <label for="disabilityType">विकलांगता का प्रकार (Type of Disability):</label>
+                <input type="text" class="form-control" id="disabilityType" name="disabilityType">
+            </div>
+            <div class="form-group">
+                <label for="disabilityPercentage">विकलांगता प्रतिशत (Disability Percentage):</label>
+                <input type="number" class="form-control" id="disabilityPercentage" name="disabilityPercentage">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="aadhaarNumber">आधार संख्या (Aadhaar Number):</label>
+            <input type="text" class="form-control" id="aadhaarNumber" name="aadhaarNumber" required pattern="[2-9]{1}[0-9]{3}[0-9]{4}[0-9]{4}" title="कृपया वैध आधार संख्या दर्ज करें। (Please enter a valid Aadhaar number.)">
+        </div>
+
+        <div class="form-group">
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="autoDebitConsent" name="autoDebitConsent" required>
+                <label class="form-check-label" for="autoDebitConsent">मैं ऑटो-डेबिट सहमति देता/देती हूँ। (I give auto-debit consent.)</label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">जमा करें (Submit)</button>
+    </form>
+
+    <div id="submissionAlert" class="alert alert-success" style="display:none;">
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        // Disability Details Conditional Logic
+        $('input[name="hasDisability"]').change(function() {
+            if ($(this).val() === 'yes') {
+                $('#disabilityDetails').show();
+            } else {
+                $('#disabilityDetails').hide();
+            }
+        });
+
+        // Form Submission Simulation
+        $('#welfareForm').submit(function(event) {
+            event.preventDefault(); // Prevent actual form submission
+            alert("आपका संदर्भ फॉर्म सिम्युलेटेड है। अधिक जानकारी और आवेदन के लिए कृपया अपने क्षेत्र की आधिकारिक सरकारी वेबसाइट पर जाएं।"); // Hindi translation of the message
+        });
+
+        // Age Validation
+        $('#age').on('input', function() {
+            var age = parseInt($(this).val());
+            if (age < 18 || age > 50) {
+                $('#ageHelp').removeClass('text-muted').addClass('text-danger').text('कृपया 18 से 50 वर्ष के बीच आयु दर्ज करें। (Please enter age between 18 and 50 years.)');
+            } else {
+                $('#ageHelp').removeClass('text-danger').addClass('text-muted').text('कृपया 18 से 50 वर्ष के बीच आयु दर्ज करें। (Please enter age between 18 and 50 years.)');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>General Welfare Scheme Application (Reference)</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .form-container {
+            width: 430px;
+            height: 788px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0069d9;
+            border-color: #0062cc;
+        }
+
+        .required::after {
+            content: " *";
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2 class="text-center">ਜਨਰਲ ਵੈਲਫੇਅਰ ਸਕੀਮ (General Welfare Scheme)</h2>
+    <p class="text-center"><b>ਲਾਭ:</b> ਇਹ ਸਕੀਮ ਲੋੜਵੰਦ ਨਾਗਰਿਕਾਂ ਨੂੰ ਵਿੱਤੀ ਸਹਾਇਤਾ ਅਤੇ ਹੋਰ ਸਹਾਇਤਾ ਪ੍ਰਦਾਨ ਕਰਦੀ ਹੈ। (Benefits: This scheme provides financial assistance and other support to needy citizens.)</p>
+
+    <form id="welfareForm">
+        <div class="form-group">
+            <label for="name" class="required">ਨਾਂ (Name):</label>
+            <input type="text" id="name" name="name" value="David" required>
+        </div>
+
+        <div class="form-group">
+            <label for="age" class="required">ਉਮਰ (Age):</label>
+            <input type="number" id="age" name="age" value="50" required>
+        </div>
+
+        <div class="form-group">
+            <label for="gender" class="required">ਲਿੰਗ (Gender):</label>
+            <select id="gender" name="gender" required>
+                <option value="Female" selected>ਔਰਤ (Female)</option>
+                <option value="Male">ਮਰਦ (Male)</option>
+                <option value="Other">ਹੋਰ (Other)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="state" class="required">ਰਾਜ (State):</label>
+            <select id="state" name="state" required>
+                <option value="Punjab" selected>ਪੰਜਾਬ (Punjab)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="occupation">ਕਿੱਤਾ (Occupation):</label>
+            <input type="text" id="occupation" name="occupation" value="job">
+        </div>
+
+        <div class="form-group">
+            <label for="income_category">ਆਮਦਨ ਸ਼੍ਰੇਣੀ (Income Category):</label>
+            <select id="income_category" name="income_category">
+                <option value="BPL" selected>BPL</option>
+                <option value="APL">APL</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="family_size">ਪਰਿਵਾਰ ਦਾ ਆਕਾਰ (Family Size):</label>
+            <input type="number" id="family_size" name="family_size" value="15">
+        </div>
+
+        <div class="form-group">
+            <label for="has_disability">ਕੀ ਕੋਈ ਅਪੰਗਤਾ ਹੈ? (Do you have a disability?):</label>
+            <select id="has_disability" name="has_disability" onchange="toggleDisabilityFields()">
+                <option value="no" selected>ਨਹੀਂ (No)</option>
+                <option value="yes">ਹਾਂ (Yes)</option>
+            </select>
+        </div>
+
+        <div id="disabilityFields" style="display: none;">
+            <div class="form-group">
+                <label for="disability_type">ਅਪੰਗਤਾ ਦੀ ਕਿਸਮ (Type of Disability):</label>
+                <input type="text" id="disability_type" name="disability_type">
+            </div>
+            <div class="form-group">
+                <label for="disability_percentage">ਅਪੰਗਤਾ ਪ੍ਰਤੀਸ਼ਤ (Disability Percentage):</label>
+                <input type="number" id="disability_percentage" name="disability_percentage">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="proof_of_age" class="required">ਉਮਰ ਦਾ ਸਬੂਤ (Proof of Age):</label>
+            <input type="text" id="proof_of_age" name="proof_of_age" required>
+        </div>
+
+        <div class="form-group">
+            <label for="pre_tax_earnings">ਟੈਕਸ ਤੋਂ ਪਹਿਲਾਂ ਮਹੀਨਾਵਾਰ ਕੰਮ ਦੀ ਕਮਾਈ (Pre-tax monthly work earnings):</label>
+            <input type="number" id="pre_tax_earnings" name="pre_tax_earnings">
+        </div>
+
+        <div class="form-group">
+            <label for="non_work_income">ਗੈਰ-ਕੰਮ ਦੇ ਸਰੋਤਾਂ ਤੋਂ ਮਹੀਨਾਵਾਰ ਆਮਦਨ (Monthly income from non-work sources):</label>
+            <input type="number" id="non_work_income" name="non_work_income">
+        </div>
+
+        <div class="form-group">
+            <label for="caste_certificate">ਜਾਤੀ ਸਰਟੀਫਿਕੇਟ (Caste Certificate):</label>
+            <select id="caste_certificate" name="caste_certificate">
+                <option value="">ਕੋਈ ਨਹੀਂ (None)</option>
+                <option value="SC">SC</option>
+                <option value="OBC">OBC</option>
+                <option value="General">General</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="income_asset_certificate">ਆਮਦਨ ਅਤੇ ਸੰਪਤੀ ਸਰਟੀਫਿਕੇਟ (Income and Asset Certificate):</label>
+            <input type="file" id="income_asset_certificate" name="income_asset_certificate">
+        </div>
+
+        <button type="button" class="btn btn-primary btn-block" onclick="simulateSubmission()">ਜਮ੍ਹਾਂ ਕਰੋ (Submit)</button>
+    </form>
+</div>
+
+<script>
+    function toggleDisabilityFields() {
+        var disabilitySelect = document.getElementById("has_disability");
+        var disabilityFields = document.getElementById("disabilityFields");
+
+        if (disabilitySelect.value === "yes") {
+            disabilityFields.style.display = "block";
+        } else {
+            disabilityFields.style.display = "none";
+        }
+    }
+
+    function simulateSubmission() {
+        // Client-side validation
+        var age = document.getElementById("age").value;
+        var income_category = document.getElementById("income_category").value;
+        var has_disability = document.getElementById("has_disability").value;
+
+        if (age < 0) {
+            alert("ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਵੈਧ ਉਮਰ ਦਰਜ ਕਰੋ। (Please enter a valid age.)");
+            return;
+        }
+
+        // Example validation based on the provided data
+        if (age < 65 && has_disability === "no") {
+            alert("ਤੁਹਾਡੀ ਉਮਰ 65 ਸਾਲ ਤੋਂ ਘੱਟ ਹੈ ਅਤੇ ਤੁਹਾਡੇ ਕੋਲ ਕੋਈ ਅਪੰਗਤਾ ਨਹੀਂ ਹੈ, ਇਸ ਲਈ ਤੁਸੀਂ ਯੋਗ ਨਹੀਂ ਹੋ ਸਕਦੇ। (You are under 65 and do not have a disability, so you may not be eligible.)");
+        }
+
+        // Simulate submission
+        alert("ਤੁਹਾਡਾ ਰੈਫਰੈਂਸ ਫਾਰਮ ਸਿਮੂਲੇਟ ਕੀਤਾ ਗਿਆ ਹੈ। ਵਧੇਰੇ ਜਾਣਕਾਰੀ ਲਈ ਅਤੇ ਅਪਲਾਈ ਕਰਨ ਲਈ ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੇ ਖੇਤਰ ਦੀ ਅਧਿਕਾਰਤ ਸਰਕਾਰੀ ਵੈੱਬਸਾਈਟ 'ਤੇ ਜਾਓ। (Your reference form has been simulated. Please visit the official government website for your region for more information and to apply.)");
+    }
+</script>
+
+</body>
+</html>

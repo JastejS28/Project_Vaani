@@ -1,0 +1,564 @@
+/* Modern UI Styles for Project Vaani - Blue & Cyan Theme */
+
+:root {
+  --primary: #0070f3;
+  --primary-light: #339af0;
+  --primary-dark: #0055cc;
+  --secondary: #00b8d4;
+  --text-on-dark: #ffffff;
+  --text-primary: #333333;
+  --background: #f9f9fc;
+  --surface: #ffffff;
+  --error: #d32f2f;
+  --success: #00c853;
+}
+
+/* Global styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  background-color: #111;
+  min-height: 100vh;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* App Container - Change to blue gradient */
+.vaani-app {
+  width: 400px;
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #0055cc 0%, #0070f3 60%, #00b8d4 100%);
+  color: var(--text-on-dark);
+}
+
+/* Welcome Screen */
+.vaani-welcome-screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 16px;
+  position: relative;
+}
+
+.welcome-content {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.welcome-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.welcome-header h1 {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.welcome-description {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 16px;
+  text-align: center;
+  max-width: 340px;
+  margin: 0 auto;
+}
+
+/* Central Circle Animation - Change colors to blue/cyan */
+.central-animation {
+  position: relative;
+  width: 240px;
+  height: 240px;
+  margin: 40px auto;
+}
+
+.circle-outer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: rgba(0, 184, 212, 0.7); /* Cyan */
+  animation: pulse 4s ease-in-out infinite alternate;
+}
+
+.circle-middle {
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  top: 10%;
+  left: 10%;
+  border-radius: 50%;
+  background: rgba(0, 112, 243, 0.8); /* Blue */
+  animation: pulse 4s ease-in-out infinite alternate 1s;
+}
+
+.circle-inner {
+  position: absolute;
+  width: 60%;
+  height: 60%;
+  top: 20%;
+  left: 20%;
+  border-radius: 50%;
+  background: rgba(51, 154, 240, 0.85); /* Light blue */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  backdrop-filter: blur(5px);
+}
+
+.circle-inner svg {
+  margin-bottom: 8px;
+  color: white;
+}
+
+.circle-inner h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.circle-inner p {
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+.floating-icon {
+  position: absolute;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.users-icon {
+  top: 10px;
+  left: -15px;
+  animation: float 5s ease-in-out infinite;
+}
+
+.globe-icon {
+  bottom: 20%;
+  right: -15px;
+  animation: float 5s ease-in-out infinite 1.5s;
+}
+
+.heart-icon {
+  top: 40%;
+  right: -10px;
+  animation: float 5s ease-in-out infinite 0.8s;
+}
+
+/* Feature Cards - Specific to welcome screen */
+.feature-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin: 40px 0;
+}
+
+.feature-card {
+  background: rgba(0, 112, 243, 0.2);
+  backdrop-filter: blur(5px);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1.2;
+}
+
+.feature-card h3 {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: white;
+}
+
+.feature-card p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+}
+
+/* Language Selector */
+.choose-language-section {
+  margin-top: 20px;
+}
+
+.choose-language-section h2 {
+  font-size: 24px;
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.language-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.language-button {
+  padding: 20px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.language-button.selected {
+  background: rgba(0, 184, 212, 0.3);
+  box-shadow: 0 0 15px rgba(0, 184, 212, 0.2);
+}
+
+.lang-name {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.lang-native {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* Conversation Screen */
+.vaani-conversation-screen {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 16px;
+  position: relative;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.language-pill {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.settings-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.header-content {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.header-content h1 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.header-content p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 15px;
+}
+
+/* Chat Container */
+.chat-container {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+  flex: 1;
+}
+
+.chat-header {
+  padding: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.assistant-icon {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.chat-header-text h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.status-online {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.status-online::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4ade80;
+  margin-right: 6px;
+}
+
+.chat-messages {
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.message {
+  margin-bottom: 16px;
+}
+
+.bot-message {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 16px;
+  border-radius: 16px;
+  color: white;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* Voice Controls */
+.voice-controls {
+  position: relative;
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.vaani-record-btn {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.vaani-record-btn.recording {
+  background: rgba(0, 184, 212, 0.3);
+  animation: pulse 1.5s infinite;
+}
+
+.tap-instruction {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Audio visualizer for recording */
+.audio-visualizer {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 20px;
+  margin-bottom: 16px;
+}
+
+.visualizer-bar {
+  width: 2px;
+  background: rgba(255, 255, 255, 0.5);
+  transition: height 0.1s ease;
+}
+
+/* Form Notification - Improved button styling */
+.open-form-button {
+  background: rgba(11, 54, 196, 0.25);
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.open-form-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0, 184, 212, 0.3), rgba(0, 112, 243, 0.3));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.open-form-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+.open-form-button:hover::before {
+  opacity: 1;
+}
+
+.open-form-button:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.open-form-button svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Animations */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+    opacity: 0.8;
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+    opacity: 1;
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    opacity: 0.8;
+  }
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes ripple {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+@keyframes floatOrbit {
+  0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); }
+  25% { transform: translateY(-15px) translateX(10px) rotate(90deg); }
+  50% { transform: translateY(0) translateX(15px) rotate(180deg); }
+  75% { transform: translateY(15px) translateX(5px) rotate(270deg); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-height: 700px) {
+  .vaani-app {
+    border-radius: 0;
+    max-height: 100vh;
+  }
+  
+  .chat-container {
+    height: 280px;
+  }
+  
+  .feature-cards {
+    margin-bottom: 20px;
+  }
+  
+  .central-animation {
+    margin: 20px auto;
+  }
+  
+  .voice-controls {
+    margin-bottom: 0;
+  }
+}
