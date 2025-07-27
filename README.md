@@ -139,26 +139,6 @@ You're ready to talk to Project Vaani in your browser! 🧠🎤
 bash
 Copy
 Edit
-project-vaani/
-├── backend/
-│   ├── outputs/           # AI-generated audio responses
-│   ├── uploads/           # Temp user audio
-│   ├── .env               # API keys & config
-│   ├── index.js           # Main Express server
-│   ├── package.json
-│   └── ...
-├── frontend/
-│   ├── public/
-│   ├── src/
-│   │   ├── assets/
-│   │   ├── components/
-│   │   │   ├── AudioRecorder.jsx
-│   │   │   ├── ChatMessage.jsx
-│   │   │   ├── FormModal.jsx / .css
-│   │   │   └── Icons.jsx
-│   │   ├── App.jsx
-│   │   └── main.jsx
-│   ├── index.html
-│   └── ...
+<pre> ``` project-vaani/ ├── backend/ │ ├── outputs/ # AI-generated audio responses │ ├── uploads/ # Temp user audio │ ├── .env # API keys & config │ ├── index.js # Main Express server │ ├── package.json │ └── ... ├── frontend/ │ ├── public/ │ ├── src/ │ │ ├── assets/ │ │ ├── components/ │ │ │ ├── AudioRecorder.jsx │ │ │ ├── ChatMessage.jsx │ │ │ ├── FormModal.jsx / .css │ │ │ └── Icons.jsx │ │ ├── App.jsx │ │ ├── main.jsx │ │ └── index.css │ ├── index.html │ └── ... ``` </pre>
 💡 Built with care to empower every voice.
 
