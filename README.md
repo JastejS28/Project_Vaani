@@ -1,124 +1,208 @@
-Project Vaani: AI-Powered Digital Companion
-Project Vaani is a voice-first AI digital companion designed to make government social welfare schemes accessible to digitally inexperienced and multilingual citizens in India. It leverages a suite of modern AI services to provide a seamless, conversational experience, breaking down language and technology barriers.
+# Project Vaani
 
-Table of Contents
-Project Aim & Vision
+Project Vaani is an AI-powered, voice-first digital assistant designed to bridge the gap between citizens and government social welfare schemes in India. By leveraging advanced speech recognition, translation, and generative AI technologies, Vaani empowers digitally inexperienced and multilingual users to access critical information and benefits with ease.
 
-Core Workflow
+---
 
-Tech Stack
+## 📑 Table of Contents
 
-Getting Started
+1. [Vision](#vision)
+2. [Key Features](#key-features)
+3. [How It Works](#how-it-works)
+4. [Tech Stack](#tech-stack)
+5. [Project Structure](#project-structure)
+6. [Supported Languages](#supported-languages)
+7. [Getting Started](#getting-started)
+   - [Prerequisites](#prerequisites)
+   - [Installation](#installation)
+   - [Environment Configuration](#environment-configuration)
+   - [Running the Application](#running-the-application)
+8. [Usage Guide](#usage-guide)
+9. [Contributing](#contributing)
+10. [License](#license)
+11. [Contact](#contact)
+12. [Acknowledgements](#acknowledgements)
 
-Prerequisites
+---
 
-Installation
+## 1. 🌟 Vision
 
-Environment Variables
+Project Vaani aims to create an inclusive digital platform where any citizen, regardless of language or technical expertise, can interact using natural voice commands to discover, understand, and apply for government welfare programs. Our mission is to democratize access to public services and promote social equity through the power of AI.
 
-Running the Application
+---
 
-Project Structure
+## 2. 🚩 Key Features
 
-1. Project Aim & Vision
-Aim: To create "Project Vaani," a voice-first AI digital companion that makes government social welfare schemes accessible to digitally inexperienced and multilingual citizens in India.
-Vision: To build a future where any citizen, regardless of their language or technical literacy, can easily understand, apply for, and receive the benefits they are entitled to, using nothing more than their own voice. We are bridging the access gap by transforming complex digital processes into simple, empathetic conversations.
-2. The Complete Technical Workflow
-This workflow details the end-to-end process from the moment a user speaks to when they receive a spoken response, ensuring a seamless experience in their chosen language.
+- **Voice-First User Experience:** Speak queries in your native language for a seamless experience.
+- **Multilingual Support:** Handles multiple Indian languages and English.
+- **AI-Powered Query Resolution:** Uses generative AI to understand complex questions and provide accurate responses.
+- **End-to-End Automation:** Automates the entire workflow from voice input to actionable output.
+- **Mobile Responsive:** Designed for accessibility on smartphones and tablets.
+- **Privacy First:** User audio is processed securely and not stored beyond session needs.
 
-Initial Setup:
-User Interface (React + Vite): The user opens a mobile-responsive website.
+---
 
-Language Selection: The user is first prompted to select their preferred language for the session (e.g., English or Hindi). This choice is stored and sent with every subsequent request.
+## 3. 🎤 How It Works
 
-The Conversational Loop:
-Voice Input (Frontend): The user speaks their query. The browser's MediaRecorder API captures the audio, which is sent to the backend along with the chosen language code.
+1. **Voice Input:**  
+   Users speak their queries in the language of their choice using a mobile-friendly web app.
 
-Audio-to-English Translation (Backend - Groq Whisper): The backend calls the Groq Whisper API's /translations endpoint, which transcribes the user's speech and translates it directly into English text.
+2. **Speech-to-Text & Translation:**  
+   Audio is transcribed and translated to English via Groq Whisper API, handling multiple Indian languages.
 
-Core Logic Processing (Backend - External API): The clean English text is sent to the external logic API (https://adityachanna04-project.onrender.com/chat). This "brain" processes the query and returns its response in English text.
+3. **AI Logic Processing:**  
+   Translated queries are sent to a generative AI (Groq Llama3) for understanding and response formulation.
 
-Response Translation (Backend - Groq LLM): If the user's chosen language was Hindi, the backend uses a Groq language model (like llama3-8b-8192) to translate the English response from the external API into simple, conversational Hindi. This step is skipped for English users.
+4. **Translation of Response:**  
+   The AI-generated answer is translated back into the user's selected language.
 
-Text-to-Speech Generation (Backend - ElevenLabs): The backend uses the final response text (in the correct language) and the user's language choice to select the appropriate voice from the ElevenLabs API, which returns the spoken response as an MP3 file.
+5. **Text-to-Speech:**  
+   ElevenLabs API converts the final response into clear, natural speech in the user's language.
 
-Final Delivery (Frontend): The backend sends a JSON object to the frontend containing the transcription, the final spoken response text, and a URL to the audio file. The frontend displays the conversation and plays the audio.
+6. **Conversational UI:**  
+   The frontend displays both text and audio responses, creating a seamless, voice-first conversational experience.
 
-3. Tech Stack
-Frontend: React (with Vite), JavaScript
+---
 
-Backend: Node.js, Express.js
+## 4. 🛠️ Tech Stack
 
-Speech-to-Text: Groq API (Whisper-large-v3)
+- **Frontend:** React (Vite), JavaScript, HTML, CSS
+- **Backend:** Node.js, Express.js
+- **Speech Recognition:** Groq Whisper API
+- **AI Logic & Translation:** Groq Llama3 API
+- **Text-to-Speech:** ElevenLabs API
 
-Language Translation & Logic: Groq API (Llama3)
+---
 
-Text-to-Speech: ElevenLabs API
+## 5. 📂 Project Structure
 
-4. Getting Started
-Follow these instructions to set up and run the project on your local machine.
+```
+Project_Vaani/
+├── backend/          # Node.js server, handles API requests and audio processing
+│   ├── uploads/      # Temporary storage for user audio files
+│   └── ...
+├── frontend/         # React web app (Vite)
+│   └── ...
+├── README.md
+└── ...
+```
 
-Prerequisites
-Node.js (v18 or later recommended)
+---
 
-npm (or yarn)
+## 6. 🗣️ Supported Languages
 
-Installation
-Clone the Repository:
+- Hindi
+- English
+- (Extendable to other major Indian languages)
 
-git clone <your-repository-url>
-cd project-vaani
+---
 
-Install Backend Dependencies:
-Navigate to the backend directory and install the required packages.
+## 7. 🏁 Getting Started
 
-cd backend
-npm install
+### 7.1 Prerequisites
 
-Install Frontend Dependencies:
-Navigate to the frontend directory and install the required packages.
+- Node.js (v18+ recommended)
+- npm or yarn
 
-cd ../frontend
-npm install
+### 7.2 Installation
 
-Environment Variables
-The backend requires API keys to function.
+1. **Clone the repository**
+    ```bash
+    git clone https://github.com/JastejS28/Project_Vaani.git
+    cd Project_Vaani
+    ```
 
-In the backend directory, create a new file named .env.
+2. **Install backend dependencies**
+    ```bash
+    cd backend
+    npm install
+    ```
 
-Add the following variables to the .env file, replacing the placeholder values with your actual keys and URLs:
+3. **Install frontend dependencies**
+    ```bash
+    cd ../frontend
+    npm install
+    ```
 
-# Port for the backend server
+### 7.3 Environment Configuration
+
+Create a `.env` file in the `backend` directory with your API keys and configuration:
+```
 PORT=5000
+GROQ_API_KEY=your_groq_api_key
+ELEVENLABS_API_KEY=your_elevenlabs_api_key
+EXTERNAL_API_URL=https://adityachanna04-project.onrender.com/chat
+```
 
-# API Keys
-GROQ_API_KEY="gsk_..."
-ELEVENLABS_API_KEY="..."
-
-# External API for core logic
-EXTERNAL_API_URL="https://adityachanna04-project.onrender.com/chat"
-
-Create Required Folders:
-Inside the backend directory, you must manually create an empty folder named uploads. This is where temporary audio files will be stored before processing.
-
+Create an `uploads` folder for storing audio files:
+```bash
 cd backend
 mkdir uploads
+```
 
-Running the Application
-You need to run both the backend and frontend servers simultaneously in separate terminal windows.
+### 7.4 Running the Application
 
-Start the Backend Server:
-From the backend directory:
+1. **Start the backend**
+    ```bash
+    cd backend
+    npm start
+    # Backend runs at http://localhost:5000
+    ```
 
-npm start
+2. **Start the frontend**
+    ```bash
+    cd frontend
+    npm run dev
+    # Frontend runs at http://localhost:5173
+    ```
 
-The server should now be running on http://localhost:5000.
+---
 
-Start the Frontend Development Server:
-From the frontend directory:
+## 8. 📖 Usage Guide
 
-npm run dev
+1. Open your browser and visit http://localhost:5173
+2. Select your preferred language.
+3. Press the microphone button and speak your query.
+4. Listen to the response or read the on-screen text.
+5. Repeat as needed—Project Vaani is conversational!
 
-The React application will open in your browser, typically at http://localhost:5173.
+---
 
-You can now interact with Project Vaani in your browser.
+## 9. 🤝 Contributing
+
+We welcome contributions!
+
+- Fork the repo
+- Create your feature branch (`git checkout -b feature/my-feature`)
+- Commit your changes
+- Push to the branch
+- Open a Pull Request
+
+For detailed contributor guidelines, see [CONTRIBUTING.md](CONTRIBUTING.md) if present.
+
+---
+
+## 10. 📜 License
+
+Distributed under the MIT License. See `LICENSE` for details.
+
+---
+
+## 11. 💡 Contact
+
+Questions, suggestions, or feedback?  
+- Open an issue on GitHub
+- Contact the maintainers via their GitHub profiles
+
+---
+
+## 12. 🙏 Acknowledgements
+
+- [Groq Whisper API](https://groq.com/)
+- [Groq Llama3 API](https://groq.com/)
+- [ElevenLabs API](https://elevenlabs.io/)
+- Government of India - Social Welfare Schemes Data Source
+
+---
+
+*Empowering citizens, one voice at a time.*
