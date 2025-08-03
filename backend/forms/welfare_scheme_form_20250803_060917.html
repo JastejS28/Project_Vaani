@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>General Welfare Scheme Application (Reference)</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .form-container {
+            width: 430px;
+            height: 788px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0069d9;
+            border-color: #0062cc;
+        }
+
+        .required::after {
+            content: " *";
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2 class="text-center">ਜਨਰਲ ਵੈਲਫੇਅਰ ਸਕੀਮ (General Welfare Scheme)</h2>
+    <p class="text-center">ਇਹ ਸਕੀਮ ਪੰਜਾਬ ਦੇ ਨਾਗਰਿਕਾਂ ਦੀ ਭਲਾਈ ਲਈ ਹੈ। (This scheme is for the welfare of the citizens of Punjab.)</p>
+
+    <form id="welfareForm">
+        <div class="form-group">
+            <label for="name" class="required">ਨਾਂ (Name):</label>
+            <input type="text" id="name" name="Name" required aria-required="true">
+        </div>
+
+        <div class="form-group">
+            <label for="dob" class="required">ਜਨਮ ਤਾਰੀਖ (Date of Birth):</label>
+            <input type="date" id="dob" name="Date of Birth" required aria-required="true">
+        </div>
+
+        <div class="form-group">
+            <label for="sex" class="required">ਲਿੰਗ (Sex):</label>
+            <select id="sex" name="Sex" required aria-required="true">
+                <option value="">ਚੁਣੋ (Select)</option>
+                <option value="male">ਮਰਦ (Male)</option>
+                <option value="female">ਔਰਤ (Female)</option>
+                <option value="other">ਹੋਰ (Other)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="maritalStatus" class="required">ਵਿਆਹੁਤਾ ਸਥਿਤੀ (Marital Status):</label>
+            <select id="maritalStatus" name="Marital Status" required aria-required="true">
+                <option value="">ਚੁਣੋ (Select)</option>
+                <option value="single">ਕੁਆਰਾ (Single)</option>
+                <option value="married">ਵਿਆਹਿਆ (Married)</option>
+                <option value="divorced">ਤਲਾਕਸ਼ੁਦਾ (Divorced)</option>
+                <option value="widowed">ਵਿਧਵਾ (Widowed)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="ssn" class="required">ਸੋਸ਼ਲ ਸੁਰੱਖਿਆ ਨੰਬਰ (Social Security Number):</label>
+            <input type="text" id="ssn" name="Social Security Number" required aria-required="true">
+        </div>
+
+        <div class="form-group">
+            <label for="tribalEnrollment" class="required">ਕਬਾਇਲੀ ਦਾਖਲਾ ਨੰਬਰ (Tribal Enrollment Number):</label>
+            <input type="text" id="tribalEnrollment" name="Tribal Enrollment Number" required aria-required="true">
+        </div>
+
+        <div class="form-group">
+            <label for="proofOfIncome">ਆਮਦਨ ਦਾ ਸਬੂਤ (Proof of Income):</label>
+            <input type="file" id="proofOfIncome" name="Proof of Income">
+        </div>
+
+        <div class="form-group">
+            <label for="aadhaarLinked">ਕੀ ਤੁਹਾਡਾ ਆਧਾਰ ਜਨ ਧਨ ਜਾਂ ਬੈਂਕ ਖਾਤੇ ਨਾਲ ਜੁੜਿਆ ਹੋਇਆ ਹੈ? (Is your Aadhaar linked to Jan Dhan or saving bank account?)</label>
+            <select id="aadhaarLinked" name="AadhaarLinked">
+                <option value="yes">ਹਾਂ (Yes)</option>
+                <option value="no">ਨਹੀਂ (No)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="age">ਉਮਰ (Age):</label>
+            <input type="number" id="age" name="age" value="50" readonly>
+        </div>
+
+        <div class="form-group">
+            <label for="familySize">ਪਰਿਵਾਰ ਦਾ ਆਕਾਰ (Family Size):</label>
+            <input type="number" id="familySize" name="familySize" value="5" readonly>
+        </div>
+
+        <div class="form-group">
+            <label for="incomeCategory">ਆਮਦਨ ਸ਼੍ਰੇਣੀ (Income Category):</label>
+            <input type="text" id="incomeCategory" name="incomeCategory" value="BPL" readonly>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">ਜਮ੍ਹਾਂ ਕਰੋ (Submit)</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById('welfareForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        alert("ਤੁਹਾਡਾ ਰੈਫਰੈਂਸ ਫਾਰਮ ਸਿਮੂਲੇਟ ਕੀਤਾ ਗਿਆ ਹੈ। ਵਧੇਰੇ ਜਾਣਕਾਰੀ ਅਤੇ ਅਪਲਾਈ ਕਰਨ ਲਈ ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੇ ਖੇਤਰ ਦੀ ਸਰਕਾਰੀ ਵੈੱਬਸਾਈਟ 'ਤੇ ਜਾਓ। (Your reference form has been simulated. Please visit the official government website for your region for more information and to apply.)");
+    });
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

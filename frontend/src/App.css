@@ -220,14 +220,17 @@ body {
   margin-bottom: 20px;
 }
 
+/* Language Selector - Updated for 6 languages */
 .language-buttons {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+  gap: 12px;
+  max-height: 300px;
+  overflow-y: auto;
 }
 
 .language-button {
-  padding: 20px;
+  padding: 16px;
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.1);
   border: none;
@@ -235,21 +238,27 @@ body {
   text-align: center;
   cursor: pointer;
   transition: all 0.2s;
+  min-height: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .language-button.selected {
   background: rgba(0, 184, 212, 0.3);
   box-shadow: 0 0 15px rgba(0, 184, 212, 0.2);
+  transform: scale(1.02);
 }
 
 .lang-name {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   margin-bottom: 4px;
+  line-height: 1.2;
 }
 
 .lang-native {
-  font-size: 14px;
+  font-size: 13px;
   opacity: 0.8;
 }
 

@@ -34,12 +34,34 @@ const FormModal = ({ formFilename, onClose }) => {
     }
   };
 
+  // Add download functionality
+  const handleDownload = () => {
+    if (!formContent) return;
+    
+    const blob = new Blob([formContent], { type: 'text/html' });
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = formFilename || 'application_form.html';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
+  };
+
   return (
     <div className="form-modal-overlay" onClick={handleOverlayClick}>
       <div className="form-modal-content">
         <div className="form-modal-header">
           <h2>Application Form</h2>
-          <button className="form-close-btn" onClick={onClose}>×</button>
+          <div className="form-modal-actions">
+            {!loading && !error && (
+              <button className="form-download-btn" onClick={handleDownload} title="Download Form">
+                📥 Download
+              </button>
+            )}
+            <button className="form-close-btn" onClick={onClose}>×</button>
+          </div>
         </div>
         <div className="form-modal-body">
           {loading && <div className="form-loading">Loading form...</div>}

@@ -7,12 +7,28 @@ import { Mic, MicOff, Volume2, Settings, Globe, Users } from './components/Icons
 function App() {
   const [processing, setProcessing] = useState(false);
   const [response, setResponse] = useState(null);
-  const [conversationHistory, setConversationHistory] = useState([]); // Add this line to fix the error
+  const [conversationHistory, setConversationHistory] = useState([]);
   const [userId] = useState('vaani_user_' + Date.now());
   const [showForm, setShowForm] = useState(false);
   const [audioLevel, setAudioLevel] = useState(0);
   const [recording, setRecording] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState(null); // 'hi' or 'en'
+  const [selectedLanguage, setSelectedLanguage] = useState(null);
+
+  // Language options with the new additions
+  const languages = [
+    { code: 'hi', name: 'हिंदी', english: 'Hindi' },
+    { code: 'en', name: 'English', english: 'English' },
+    { code: 'bn', name: 'বাংলা', english: 'Bengali' },
+    { code: 'te', name: 'తెలుగు', english: 'Telugu' },
+    { code: 'mr', name: 'मराठी', english: 'Marathi' },
+    { code: 'ta', name: 'தமிழ்', english: 'Tamil' }
+  ];
+
+  // Get language display name
+  const getLanguageDisplayName = (code) => {
+    const lang = languages.find(l => l.code === code);
+    return lang ? lang.name : code;
+  };
 
   // Handle recording status audio visualization
   useEffect(() => {
@@ -155,7 +171,7 @@ function App() {
           <div className="feature-card">
             <Globe />
             <h3>Multilingual</h3>
-            <p>2 languages</p>
+            <p>{languages.length} languages</p>
           </div>
         </div>
         
@@ -163,21 +179,16 @@ function App() {
           <h3>Choose Your Language</h3>
           
           <div className="language-buttons">
-            <button 
-              className={`language-button ${selectedLanguage === 'en' ? 'selected' : ''}`}
-              onClick={() => setSelectedLanguage('en')}
-            >
-              <div className="lang-name">English</div>
-              <div className="lang-native">English</div>
-            </button>
-            
-            <button 
-              className={`language-button ${selectedLanguage === 'hi' ? 'selected' : ''}`}
-              onClick={() => setSelectedLanguage('hi')}
-            >
-              <div className="lang-name">हिंदी</div>
-              <div className="lang-native">Hindi</div>
-            </button>
+            {languages.map((lang) => (
+              <button 
+                key={lang.code}
+                className={`language-button ${selectedLanguage === lang.code ? 'selected' : ''}`}
+                onClick={() => setSelectedLanguage(lang.code)}
+              >
+                <div className="lang-name">{lang.name}</div>
+                <div className="lang-native">{lang.english}</div>
+              </button>
+            ))}
           </div>
         </div>
       </div>
@@ -190,10 +201,10 @@ function App() {
       <div className="top-bar">
         <div className="language-pill">
           <span role="img" aria-label="language">🎤</span>
-          <span>{selectedLanguage === 'hi' ? 'हिंदी' : 'English'}</span>
+          <span>{getLanguageDisplayName(selectedLanguage)}</span>
         </div>
         
-        <button className="settings-button">
+        <button className="settings-button" onClick={() => setSelectedLanguage(null)}>
           <Settings />
         </button>
       </div>

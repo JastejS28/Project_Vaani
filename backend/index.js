@@ -17,9 +17,14 @@ const {
 
 const groq = new Groq({ apiKey: GROQ_API_KEY });
 
+// Update the ELEVENLABS_CONFIG to support all 6 languages
 const ELEVENLABS_CONFIG = {
   hi: { voiceId: 'pNInz6obpgDQGcFmaJgB', modelId: 'eleven_multilingual_v2' },
-  en: { voiceId: '21m00Tcm4TlvDq8ikWAM', modelId: 'eleven_monolingual_v1' }
+  en: { voiceId: '21m00Tcm4TlvDq8ikWAM', modelId: 'eleven_monolingual_v1' },
+  bn: { voiceId: 'pNInz6obpgDQGcFmaJgB', modelId: 'eleven_multilingual_v2' },
+  te: { voiceId: 'pNInz6obpgDQGcFmaJgB', modelId: 'eleven_multilingual_v2' },
+  mr: { voiceId: 'pNInz6obpgDQGcFmaJgB', modelId: 'eleven_multilingual_v2' },
+  ta: { voiceId: 'pNInz6obpgDQGcFmaJgB', modelId: 'eleven_multilingual_v2' }  // Tamil
 };
 
 // --- 2. Express App & Middleware Setup ---
@@ -269,33 +274,58 @@ app.post('/api/process-audio', upload.single('audio'), async (req, res) => {
       }
     }
     
-    // === Step 3: Translate English response back to Hindi if needed ===
+    // === Step 3: Translate English response to user's language if needed ===
     let finalResponseText = englishResponseText;
-    if (selectedLanguage === 'hi' && englishResponseText) {
-      console.log("Step 3: Translating English response to Hindi with domain context...");
+    if (selectedLanguage !== 'en' && englishResponseText) {
+      console.log(`Step 3: Translating English response to ${selectedLanguage} with domain context...`);
+      
+      // Language mapping for translation
+      const languageNames = {
+        'hi': 'Hindi',
+        'bn': 'Bengali', 
+        'te': 'Telugu',
+        'mr': 'Marathi',
+        'ta': 'Tamil'
+      };
+      
+      const targetLanguage = languageNames[selectedLanguage] || selectedLanguage;
+      
       const chatCompletion = await groq.chat.completions.create({
         messages: [
           { 
             role: 'system', 
-            content: `You are a precise Hindi translator.
-              Your ONLY job is to translate the EXACT English text provided into natural Hindi.
+            content: `You are a precise ${targetLanguage} translator.
+              Your ONLY job is to translate the EXACT English text provided into natural ${targetLanguage}.
               DO NOT add ANY introduction, greeting, or extra information.
               DO NOT change or expand the original meaning.
               DO NOT add your own content or explanations.
               Simply translate EXACTLY what is provided - nothing more, nothing less.`
           },
-          { role: 'user', content: `Please translate this English text to Hindi: "${englishResponseText}"` },
+          { role: 'user', content: `Please translate this English text to ${targetLanguage}: "${englishResponseText}"` },
         ],
         model: 'llama3-8b-8192',
-        temperature: 0.1, // Lower temperature for more predictable translations
+        temperature: 0.1,
       });
       finalResponseText = chatCompletion.choices[0]?.message?.content || englishResponseText;
-      console.log(`Translated Hindi Response: "${finalResponseText}"`);
+      console.log(`Translated ${targetLanguage} Response: "${finalResponseText}"`);
     }
 
     // === Step 4: Convert the final text to speech ===
     console.log(`Step 4: Generating audio in '${selectedLanguage}' using ElevenLabs...`);
+
+    // Add debug logging
+    console.log('Available ELEVENLABS_CONFIG:', Object.keys(ELEVENLABS_CONFIG));
+    console.log(`Looking for config for language: ${selectedLanguage}`);
+
     const ttsConfig = ELEVENLABS_CONFIG[selectedLanguage];
+    console.log('Found ttsConfig:', ttsConfig);
+
+    if (!ttsConfig) {
+      console.error(`TTS configuration not found for language: ${selectedLanguage}`);
+      console.error('Available languages:', Object.keys(ELEVENLABS_CONFIG));
+      throw new Error(`TTS configuration not found for language: ${selectedLanguage}`);
+    }
+
     const ttsResponse = await axios.post(
       `https://api.elevenlabs.io/v1/text-to-speech/${ttsConfig.voiceId}`,
       { text: finalResponseText, model_id: ttsConfig.modelId },
